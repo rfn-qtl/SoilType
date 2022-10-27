@@ -7,7 +7,7 @@
 get_soil_plot_level(samples, plot.polygons)
 }
 \arguments{
-\item{samples}{data.frame The first columns must be sample_id, lat and long.
+\item{samples}{data.frame The first columns must be sample_id, lat, and long.
 The other columns are the soil traits to be extrapolated/predicted at plot level.
 The minimum number of samples is 5.}
 

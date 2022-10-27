@@ -1,7 +1,7 @@
 #' Predict  soil characteristics at plot level
 #'
 #' This function, from a couple of samples in a trial, predict  soil characteristics at plot level via Random Forest.
-#' @param samples data.frame The first columns must be sample_id, lat and long.
+#' @param samples data.frame The first columns must be sample_id, lat, and long.
 #' The other columns are the soil traits to be extrapolated/predicted at plot level.
 #' The minimum number of samples is 5.
 #' @param plot.polygons Shapefile/polygons with the id, lat, and long plots information. The coordinate system must be the same for samples and the shapefile.
