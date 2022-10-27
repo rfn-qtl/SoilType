@@ -2,7 +2,7 @@ Package: SoilType
 Title: a package to interplay shovelomics in quantitative genetics and precision agriculture.
 Version: 0.0.0.1000
 Authors@R: 
-    person("Roberto", "Fritsche-Neto", , "rfn.qtlt@gmail.com", role = c("aut", "cre"),
+    person("Roberto", "Fritsche-Neto", "rfn.qtlt@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = 0000-0003-4310-0047"))
 Description: Two functions to retrieve soil information (from WoSIS Soil Profile Database) and predict characteristics around the world or at the plot level.
 Depends: caret, foreach, stringr, doParallel, doMC.
