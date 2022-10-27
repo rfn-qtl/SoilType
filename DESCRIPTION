@@ -5,7 +5,7 @@ Authors@R:
     person("Roberto", "Fritsche-Neto", "rfn.qtlt@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = 0000-0003-4310-0047"))
 Description: Two functions to retrieve soil information (from WoSIS Soil Profile Database) and predict characteristics around the world or at the plot level.
-Depends: caret, foreach, stringr, doParallel, doMC.
+Depends: caret foreach stringr doParallel
 License: `use_gpl3_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
