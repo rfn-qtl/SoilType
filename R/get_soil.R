@@ -35,7 +35,7 @@ if(anyNA(long) | length(long) != 1 | is.numeric(long) == F | all(long < -180) | 
 if(anyNA(max.lower.depth) | length(max.lower.depth) != 1 | is.numeric(max.lower.depth) == F | all(max.lower.depth < 5) | all(max.lower.depth > 160)) stop("The depth must numeric, length == 1, and between 5 and 160)")
 
 #load dataset
-soil.data <- load("soil.data.rda")
+soil.data <- force(soil.data)
 
 # first, index samples nearby the target location
 sample_id <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat) & round(soil.data$profiles$longitude) == round(long),]$profile_id
