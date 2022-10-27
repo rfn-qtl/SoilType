@@ -6,6 +6,7 @@
 #' @param lat numeric. Latitude values of the site/environment (e.g. 33.65) in WGS84. The lat must numeric, length == 1, and between -90 and 90.
 #' @param long numeric. Longitude values site/environment (e.g. -90.51) in WGS84. The long must numeric, length == 1, and between -180 and 180.
 #' @param max.lower.depth numeric. The lowest depth soil layer to be consider, in cm (e.g. 20). The depth must numeric, length == 1, and between 5 and 160.
+#' @param isric.data list. The ISRIC Soil Data Hub (https://data.isric.org) dataset, last access: 27 Oct 2022).
 #' @return data.frame The output is a data.frame with the target location and its lat and long coordinates.
 #' Also, the number of samples used, the RMSE, and R-square for each prediction.
 #' The chemicals characteristics are:
@@ -26,7 +27,7 @@
 #' @examples get_soil(env.id = "RRS", lat = 30.243208 , long = -92.353191, max.lower.depth = 20)
 #' @export
 
-get_soil <- function(env.id = NULL, lat = NULL, long = NULL, max.lower.depth = 20){
+get_soil <- function(env.id = NULL, lat = NULL, long = NULL, max.lower.depth = 20, isric.data = NULL){
 
 # check points
 if(anyNA(env.id) | length(env.id) != 1) stop("The env_id must have length equals 1")
@@ -34,8 +35,7 @@ if(anyNA(lat) | length(lat) != 1 | is.numeric(lat) == F | all(lat < -90) | all(l
 if(anyNA(long) | length(long) != 1 | is.numeric(long) == F | all(long < -180) | all(long > 180)) stop("The long must numeric, length == 1, and between -180 and 180)")
 if(anyNA(max.lower.depth) | length(max.lower.depth) != 1 | is.numeric(max.lower.depth) == F | all(max.lower.depth < 5) | all(max.lower.depth > 160)) stop("The depth must numeric, length == 1, and between 5 and 160)")
 
-#load dataset
-soil.data <- force(soil.data)
+soil.data <- isric.data
 
 # first, index samples nearby the target location
 sample_id <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat) & round(soil.data$profiles$longitude) == round(long),]$profile_id

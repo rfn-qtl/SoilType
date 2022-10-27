@@ -4,7 +4,13 @@
 \alias{get_soil}
 \title{Retrieve and predict soil samples}
 \usage{
-get_soil(env.id = NULL, lat = NULL, long = NULL, max.lower.depth = 20)
+get_soil(
+  env.id = NULL,
+  lat = NULL,
+  long = NULL,
+  max.lower.depth = 20,
+  isric.data = NULL
+)
 }
 \arguments{
 \item{env.id}{character. Identification of the site/environment (e.g. Rayne). The env_id must have length equals 1.}
@@ -14,6 +20,8 @@ get_soil(env.id = NULL, lat = NULL, long = NULL, max.lower.depth = 20)
 \item{long}{numeric. Longitude values site/environment (e.g. -90.51) in WGS84. The long must numeric, length == 1, and between -180 and 180.}
 
 \item{max.lower.depth}{numeric. The lowest depth soil layer to be consider, in cm (e.g. 20). The depth must numeric, length == 1, and between 5 and 160.}
+
+\item{isric.data}{list. The ISRIC Soil Data Hub (https://data.isric.org) dataset, last access: 27 Oct 2022).}
 }
 \value{
 data.frame The output is a data.frame with the target location and its lat and long coordinates.
