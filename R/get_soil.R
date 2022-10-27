@@ -27,7 +27,7 @@
 #' @examples get_soil(env.id = "RRS", lat = 30.243208 , long = -92.353191, max.depth = 20)
 #' @export
 
-get_soil <- function(env.id = NULL, lat = NULL, long = NULL, max.depth = 20, isric.data = NULL){
+get_soil <- function(env.id = NULL, lat = NULL, long = NULL, max.depth = NULL, isric.data = NULL){
 
 # check points
 if(anyNA(env.id) | length(env.id) != 1) stop("The env_id must have length equals 1")
@@ -36,6 +36,7 @@ if(anyNA(long) | length(long) != 1 | is.numeric(long) == F | all(long < -180) | 
 if(anyNA(max.depth) | length(max.depth) != 1 | is.numeric(max.depth) == F | all(max.depth < 5) | all(max.depth > 160)) stop("The depth must numeric, length == 1, and between 5 and 160)")
 
 soil.data <- isric.data
+max.depth <- max.depth
 
 # first, index samples nearby the target location
 sample_id <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat) & round(soil.data$profiles$longitude) == round(long),]$profile_id

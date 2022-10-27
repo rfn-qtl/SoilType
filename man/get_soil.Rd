@@ -8,7 +8,7 @@ get_soil(
   env.id = NULL,
   lat = NULL,
   long = NULL,
-  max.depth = 20,
+  max.depth = NULL,
   isric.data = NULL
 )
 }
