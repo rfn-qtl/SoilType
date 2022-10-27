@@ -7,9 +7,7 @@ devtools::install_github("rfn-qtl/SoilType")
 # Load
 library(SoilType)
 
-##############################################################################
 # get_soil(): obtain / predict  soil data from locations around the world
-##############################################################################
 
 # Function description
 ?SoilType::get_soil()
@@ -24,7 +22,6 @@ get_soil(env.id = "RRS", lat = 30.243208 , long = -192.353191, max.lower.depth =
 get_soil(env.id = "RRS", lat = 30.243208 , long = -92.353191, max.lower.depth = 0)
 get_soil(env.id = "RRS", lat = 30.243208 , long = -92.353191, max.lower.depth = NA)
 get_soil(env.id = NaN, lat = 30.243208 , long = -92.353191, max.lower.depth = 5)
-
 
 # retrieving many samples in parallel - MET
 require(foreach)
@@ -85,10 +82,8 @@ heatmaply(SRM,
           fontsize_row = 6,
           fontsize_col = 6,
           file = c("SRM_heatmap.html", "SRMv_heatmap.png"))
-
-#########################################################################################################
+          
 # get_soil_plot_level(): from a couple of samples in a trial, predict  soil characteristics at plot level
-#########################################################################################################
 
 # Description
 ?SoilType::get_soil_plot_level()
