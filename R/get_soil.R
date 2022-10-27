@@ -25,6 +25,7 @@
 #' WV0006	Water retention volumetric - 6 kPa cm³/100cm³
 #' @examples get_soil(env.id = "RRS", lat = 30.243208 , long = -92.353191, max.lower.depth = 20)
 #' @export
+
 get_soil <- function(env.id = NULL, lat = NULL, long = NULL, max.lower.depth = 20){
 
 # check points
@@ -33,8 +34,8 @@ if(anyNA(lat) | length(lat) != 1 | is.numeric(lat) == F | all(lat < -90) | all(l
 if(anyNA(long) | length(long) != 1 | is.numeric(long) == F | all(long < -180) | all(long > 180)) stop("The long must numeric, length == 1, and between -180 and 180)")
 if(anyNA(max.lower.depth) | length(max.lower.depth) != 1 | is.numeric(max.lower.depth) == F | all(max.lower.depth < 5) | all(max.lower.depth > 160)) stop("The depth must numeric, length == 1, and between 5 and 160)")
 
-# load data
-soil.data <- data("soil.data.rda")
+#load dataset
+soil.data <- load("soil.data.rda")
 
 # first, index samples nearby the target location
 sample_id <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat) & round(soil.data$profiles$longitude) == round(long),]$profile_id
@@ -43,7 +44,6 @@ sample_id11 <- soil.data$profiles[round(soil.data$profiles$latitude) == round(la
 sample_id_1 <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat) & round(soil.data$profiles$longitude) == round(long-1),]$profile_id
 sample_id__ <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat-1) & round(soil.data$profiles$longitude) == round(long-1),]$profile_id
 samples <- unique(c(sample_id, sample_id1_, sample_id11, sample_id_1, sample_id__))
-
 
 # if the sample size is too small, let's find points nearby
 if (length(sample_id) < 10){
@@ -65,9 +65,7 @@ chem <- merge(profile_id, chem)
 phy <- soil.data$physical[soil.data$physical$lower_depth <= max.lower.depth & soil.data$physical$profile_id %in% sample_id,]
 phy <- merge(profile_id, phy)
 
-#######################################
 # Modeling - Regression
-#######################################
 # First chemical traits
 output.chem <- data.frame()
 
