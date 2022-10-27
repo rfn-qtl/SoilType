@@ -14,3 +14,5 @@ Imports:
     stringr,
     doParallel,
     foreach
+Depends: 
+    R (>= 2.10)
