@@ -110,5 +110,3 @@ test3 <- get_soil_plot_level(samples = samples, plot.polygons = plot.polygons)
 # and take a look at the results and the average KPI per soil trait
 head(test3)
 tapply(test3$Rsquared, test3$Trait, mean)
-
-##################### the end ##############################
