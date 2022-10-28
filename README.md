@@ -1,4 +1,4 @@
-![My Image](![My Image](images/my-image.jpg))
+![My Image](images/my-image.jpg))
 
 # SoilType
 A R package to interplay shovelomics in quantitative genetics and precision agriculture.
