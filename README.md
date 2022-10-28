@@ -1,5 +1,3 @@
-https://github.com/rfn-qtl/SoilType/blob/main/logo.png
-
 # SoilType
 A R package to interplay shovelomics in quantitative genetics and precision agriculture.
 
