@@ -1,6 +1,4 @@
 ![My Image](logo.png)
-
-# SoilType
 A R package to interplay shovelomics in quantitative genetics and precision agriculture.
 
 # Install
