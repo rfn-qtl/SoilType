@@ -7,4 +7,5 @@ devtools::install_github("rfn-qtl/SoilType")
 # Load
 library(SoilType)
 
-# Vignette
+# Vignettes - look at the main page the following file
+SoilType package Vignettes.R
