@@ -44,7 +44,7 @@ WV0006	Water retention volumetric - 6 kPa cm³/100cm³
 }
 \description{
 This function retrieves soil samples around the world that are near to your target location. Then, predict the soil characteristics for it.
-If the number of samples is more than 5, then the function will use Random Forest to make predictions. Otherwise, average the information.
+If the number of samples is more than 5, the function will use Random Forest to predict. Otherwise, average the information.
 }
 \examples{
 get_soil(env.id = "RRS", lat = 30.243208 , long = -92.353191, max.depth = 20)
