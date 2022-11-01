@@ -1,7 +1,7 @@
 ![My Image](logo.png)
 
 
-A R package to interplay soil characterization in quantitative genetics and precision agriculture.
+An R package to interplay soil characterization in quantitative genetics and precision agriculture.
 
 # Install
 devtools::install_github("rfn-qtl/SoilType")
