@@ -1,10 +1,10 @@
 Package: SoilType
 Type: Package
-Title: a package to interplay shovelomics in quantitative genetics and precision agriculture.
+Title: An R package to interplay soil characterization in quantitative genetics and precision agriculture.
 Version: 1.0.0
 Author: Roberto Fritsche-Neto
 Maintainer: Roberto Fritsche-Neto <rfn.qtl@gmail.com>
-Description: Two functions to retrieve soil information (from WoSIS Soil Profile Database) and predict characteristics around the world or at the plot level.
+Description: In the current version, there are two functions to retrieve soil information (from WoSIS Soil Profile Database) and predict soil characteristics worldwide or at the plot level.
 License: MIT
 Encoding: UTF-8
 LazyData: true

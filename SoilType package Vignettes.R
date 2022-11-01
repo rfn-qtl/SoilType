@@ -1,11 +1,11 @@
 #######################################
 # SoilType R package
 # Author: Roberto Fritsche-Neto
-# Last update: Oct 27 2022
+# Last update: Nov 1 2022
 # email: rfn.qtl@gmail.com
 #######################################
 
-# A R package to interplay shovelomics in quantitative genetics and precision agriculture.
+# An R package to interplay soil characterization in quantitative genetics and precision agriculture.
 
 # Install
 devtools::install_github("rfn-qtl/SoilType")
@@ -97,7 +97,7 @@ heatmaply(SRM,
 
 # loading some soil samples
 data("soil.samples")
-
+head(soil.samples)
 # loading the respectively shapefile
 library(raster)
 data("plot.polygons")

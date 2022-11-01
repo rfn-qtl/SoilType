@@ -1,7 +1,7 @@
 #' Retrieve and predict soil samples
 #'
 #' This function retrieves soil samples around the world that are near to your target location. Then, predict the soil characteristics for it.
-#' If the number of samples is more than 5, then the function will use Random Forest to make predictions. Otherwise, average the information.
+#' If the number of samples is more than 5, the function will use Random Forest to predict. Otherwise, average the information.
 #' @param env.id character. Identification of the site/environment (e.g. Rayne). The env_id must have length equals 1.
 #' @param lat numeric. Latitude values of the site/environment (e.g. 33.65) in WGS84. The lat must numeric, length == 1, and between -90 and 90.
 #' @param long numeric. Longitude values site/environment (e.g. -90.51) in WGS84. The long must numeric, length == 1, and between -180 and 180.
