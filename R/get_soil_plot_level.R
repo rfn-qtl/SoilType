@@ -53,24 +53,27 @@ get_soil_plot_level <- function(samples,  plot.polygons){
   if(anyNA(unique.long) | is.numeric(unique.long) == F | all(unique.long < -180) | all(unique.long > 180)) stop("The long must numeric, and between -180 and 180)")
   if(anyNA(unique.values) | is.numeric(unique.values) == F) stop("The values must numeric, and NA are not allowed)")
 
+
+if (!requireNamespace("caret", quietly = TRUE)) {
+  utils::install.packages("caret")
+}
+if (!requireNamespace("randomForest", quietly = TRUE)) {
+  utils::install.packages("randomForest")
+}
+
 # index for traits
 traits <- unique(samples.melted$variable)
 
-# retrieving many samples in parallel
-require(foreach)
-require(doParallel)
-require(doMC)
-# setting the number of cores that will be used
-registerDoParallel(cores = detectCores()) # type the number of cores you want to use
+out.plot.level <- data.frame()
 
-out.plot.level <- foreach(i = 1:length(traits),
-                 .packages = c("caret"),
-                 .combine = "rbind",
-                 .export = c("predict", "train", "trainControl"),
-                 .multicombine = TRUE,
-                 .errorhandling = "remove",
-                 .verbose = F
-) %dopar% {
+for(i in 1:length(traits)){
+
+  cat("------------------------------------------------ \n")
+  cat("ATTENTION: This function uses your samples as training set \n")
+  cat("------------------------------------------------  \n")
+  cat('The sample size must be greater than 5 \n')
+  cat("------------------------------------------------  \n")
+
   # subset the data
   subset.sample <- droplevels.data.frame(samples.melted[samples.melted$variable ==  traits[i],])
   training <- subset.sample
@@ -83,14 +86,14 @@ out.plot.level <- foreach(i = 1:length(traits),
                                      method = 'rf',
                                      trControl = trainControl))
 
-    output <- data.frame(
+  out.plot.level <- rbind(out.plot.level, data.frame(
     plot.coord,
     Trait = unique(subset.sample$variable),
     Predicted.value = predict(object = model_rf, plot.coord[,2:3]),
     Rsquared = round(as.numeric(model_rf$results[3]), 2),
     RMSE = round(as.numeric(model_rf$results[2]), 3),
     Samples = nrow(subset.sample)
-    )
+    ))
 
   }
 

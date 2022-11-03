@@ -46,6 +46,20 @@ sample_id_1 <- soil.data$profiles[round(soil.data$profiles$latitude) == round(la
 sample_id__ <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat-1) & round(soil.data$profiles$longitude) == round(long-1),]$profile_id
 samples <- unique(c(sample_id, sample_id1_, sample_id11, sample_id_1, sample_id__))
 
+
+if (!requireNamespace("caret", quietly = TRUE)) {
+  utils::install.packages("caret")
+}
+if (!requireNamespace("randomForest", quietly = TRUE)) {
+  utils::install.packages("randomForest")
+}
+
+cat("------------------------------------------------ \n")
+cat("ATTENTION: This function will retrieve samples first \n")
+cat('Then, make predictions, if the sample size is greater than 5 \n')
+cat('Otherwise, you it will return the average for the predicted value and NA for Rsquare and RMSE \n')
+cat("------------------------------------------------  \n")
+
 # if the sample size is too small, let's find points nearby
 if (length(sample_id) < 10){
 nearest <- function(x, your.number) {which.min(abs(x - your.number))}
@@ -198,21 +212,6 @@ for(i in 9:ncol(phy)){
 
 output <- rbind(output.chem, output.phy)
 
-output$Trait <- stringr::str_replace_all(output$Trait,
-                                         c("tceq_value_avg" =  "TCEQ",
-                                           "cecph7_value_avg" =  "CECPH7",
-                                           "ecec_value_avg" = "ECEC",
-                                           "orgc_value_avg" = "ORGC",
-                                           "phaq_value_avg" = "PHAQ",
-                                           "phptot_value_avg" = "PHPTOT",
-                                           "totc_value_avg" = "TOTC",
-                                           "nitkjd_value_avg" = "NITKJD",
-                                           "clay_value_avg" = "CLAY",
-                                           "sand_value_avg" = "SAND",
-                                           "silt_value_avg" = "SILT",
-                                           "wg0006_value_avg" = "WG0006",
-                                           "wv0006_value_avg" = "WV0006"
-                                         ))
 return(output)
 
 }

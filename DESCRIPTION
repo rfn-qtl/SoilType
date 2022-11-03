@@ -11,8 +11,6 @@ LazyData: true
 RoxygenNote: 7.2.1
 Imports:
     caret,
-    stringr,
-    doParallel,
-    foreach
+    randomForest
 Depends: 
     R (>= 2.10)
