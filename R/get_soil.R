@@ -61,23 +61,23 @@ cat('Otherwise, you it will return the average for the predicted value and NA fo
 cat("------------------------------------------------  \n")
 
 # if the sample size is too small, let's find points nearby
-if (length(sample_id) < 10){
+if (length(samples) < 10){
 nearest <- function(x, your.number) {which.min(abs(x - your.number))}
 lat.nearest <- soil.data$profiles$latitude[nearest(round(soil.data$profiles$latitude), lat)]
 long.nearest <- soil.data$profiles$longitude[nearest(round(soil.data$profiles$longitude), long)]
 sample_id <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest) & round(soil.data$profiles$longitude) == round(long.nearest),]$profile_id
-sample_id1_ <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest+1) & round(soil.data$profiles$longitude) == round(long.nearest),]$profile_id
-sample_id11 <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest+1) & round(soil.data$profiles$longitude) == round(long.nearest+1),]$profile_id
-sample_id_1 <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest) & round(soil.data$profiles$longitude) == round(long.nearest-1),]$profile_id
-sample_id__ <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest-1) & round(soil.data$profiles$longitude) == round(long.nearest-1),]$profile_id
+sample_id1_ <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest+2) & round(soil.data$profiles$longitude) == round(long.nearest),]$profile_id
+sample_id11 <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest+2) & round(soil.data$profiles$longitude) == round(long.nearest+2),]$profile_id
+sample_id_1 <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest) & round(soil.data$profiles$longitude) == round(long.nearest-2),]$profile_id
+sample_id__ <- soil.data$profiles[round(soil.data$profiles$latitude) == round(lat.nearest-2) & round(soil.data$profiles$longitude) == round(long.nearest-2),]$profile_id
 samples <- unique(c(sample_id, sample_id1_, sample_id11, sample_id_1, sample_id__))
   }
 
 # picking the soils data and selecting based on max.depth
-profile_id <- soil.data$profiles[soil.data$profiles$profile_id %in% sample_id,]
-chem <- soil.data$chemicals[soil.data$chemicals$lower_depth <= max.depth & soil.data$chemicals$profile_id %in% sample_id,]
+profile_id <- soil.data$profiles[soil.data$profiles$profile_id %in% samples,]
+chem <- soil.data$chemicals[soil.data$chemicals$lower_depth <= max.depth & soil.data$chemicals$profile_id %in% samples,]
 chem <- merge(profile_id, chem)
-phy <- soil.data$physical[soil.data$physical$lower_depth <= max.depth & soil.data$physical$profile_id %in% sample_id,]
+phy <- soil.data$physical[soil.data$physical$lower_depth <= max.depth & soil.data$physical$profile_id %in% samples,]
 phy <- merge(profile_id, phy)
 
 # Modeling - Regression
