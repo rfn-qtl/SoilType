@@ -90,8 +90,9 @@ soil.trait <- colnames(chem)[i]
 aux <- chem
 aux[,i][aux[, i] == 0] <- NA
 aux <- aux[!is.na(aux[, i]),]
+aux[,13]
 
-if(nrow(aux) >= 5){
+if(nrow(aux) >= 6){
   training <- aux
   trainControl <- caret::trainControl(method = "repeatedcv", number = 5, repeats = 10)
 
@@ -116,7 +117,7 @@ output.chem <- rbind(output.chem, data.frame(
 ))
   }
 
-if(nrow(aux) >= 1 & nrow(aux) < 10){
+if(nrow(aux) >= 1 & nrow(aux) < 6){
   output.chem <- rbind(output.chem, data.frame(
     env = env.id,
     Lat = lat,
@@ -130,7 +131,7 @@ if(nrow(aux) >= 1 & nrow(aux) < 10){
   ))
 }
 
-if(nrow(aux) < 1){
+if(nrow(aux) == 0){
   output.chem <- rbind(output.chem, data.frame(
     env = env.id,
     Lat = lat,
@@ -155,7 +156,7 @@ for(i in 9:ncol(phy)){
   aux[,i][aux[, i] == 0] <- NA
   aux <- aux[!is.na(aux[, i]),]
 
-  if(nrow(aux) >= 5){
+  if(nrow(aux) >= 6){
     training <- aux
     trainControl <- caret::trainControl(method = "repeatedcv", number = 5, repeats = 10)
 
@@ -180,7 +181,7 @@ for(i in 9:ncol(phy)){
     ))
   }
 
-  if(nrow(aux) >= 1 & nrow(aux) < 5){
+  if(nrow(aux) >= 1 & nrow(aux) < 6){
     output.phy <- rbind(output.phy, data.frame(
       env = env.id,
       Lat = lat,
@@ -194,7 +195,7 @@ for(i in 9:ncol(phy)){
     ))
   }
 
-  if(nrow(aux) < 1){
+  if(nrow(aux) == 0){
     output.phy <- rbind(output.phy, data.frame(
       env = env.id,
       Lat = lat,
